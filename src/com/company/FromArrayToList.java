@@ -8,7 +8,7 @@ public class FromArrayToList<T> {
     private List<T> list = new ArrayList<>();
 
     public FromArrayToList(T[] array) {
-        list.addAll(Arrays.asList((T[]) array));
+        list.addAll(Arrays.asList((T[]) array)); // перемещаем все в список
     }
 
     public void showList() {

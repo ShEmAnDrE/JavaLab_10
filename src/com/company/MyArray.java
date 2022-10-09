@@ -34,19 +34,19 @@ public class MyArray<T>{
         System.arraycopy(array, index, array, index+1, count-index);
         array[index] = object;
     }
-    public boolean addAll(int index, MyArray<T> otherarray){
-        if(otherarray.count == 0) {
+    public boolean addAll(int index, MyArray<T> otherArray){
+        if(otherArray.count == 0) {
             return false;
         }
 
         int newSize = size;
-        while (newSize - count <= otherarray.count) {
+        while (newSize - count <= otherArray.count) {
             newSize *= 2;
         }
         resize(newSize);
-        System.arraycopy(array, index, array, index+otherarray.count, count - index);
-        System.arraycopy(otherarray.array, 0, array, index, otherarray.count);
-        count += otherarray.count;
+        System.arraycopy(array, index, array, index+otherArray.count, count - index);
+        System.arraycopy(otherArray.array, 0, array, index, otherArray.count);
+        count += otherArray.count;
 
         return true;
     }

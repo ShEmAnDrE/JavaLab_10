@@ -53,7 +53,7 @@ public class Main {
 
         System.out.println("Задание 4");
         System.out.println("---------------------------");
-        Path path = Paths.get("C:\\Users\\shemc\\IdeaProjects\\JavaLab_10"); // на маке исправить
+        Path path = Paths.get("C:\\Users\\shemc\\IdeaProjects\\JavaLab_10"); // на маке исправить надо
         ArrayList<String> listOfDirectories = ReadingDirectory(path);
         for (int i = 0; i < listOfDirectories.size(); i++) {
             System.out.println(listOfDirectories.get(i));
