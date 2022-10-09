@@ -3,117 +3,121 @@ package com.company;
 import java.util.Arrays;
 import java.util.Comparator;
 
-public class MyArrayList <T>{
-    private T[] l;
+public class MyArray<T>{
+    private T[] array;
     private int count;
     private int size;
 
-    public MyArrayList(){
+    public MyArray(){
         this(8);
     }
 
-    public MyArrayList(int size) {
+    public MyArray(int size) {
         this.size = size;
-        l = (T[]) new Object[size];
+        array = (T[]) new Object[size];
         count = 0;
     }
 
-    public MyArrayList(MyArrayList<T> other){
-        this.count = other.count;
-        this.size = other.size;
-        this.l = (T[]) new Object[size];
-        System.arraycopy(other.l, 0, l, 0, count);
+    public MyArray(MyArray<T> otherArray){
+        this.count = otherArray.count;
+        this.size = otherArray.size;
+        this.array = (T[]) new Object[size];
+        System.arraycopy(otherArray.array, 0, array, 0, count);
     }
 
-    public void add(T o){
+    public void add(T object){
         if(size - count == 1) resize(size*2);
-        l[count++] = o;
+        array[count++] = object;
     }
-    public void add(T o, int index){
+    public void add(T object, int index){
         if(size - count == 1) resize(size*2);
-        System.arraycopy(l, index, l, index+1, count-index);
-        l[index] = o;
+        System.arraycopy(array, index, array, index+1, count-index);
+        array[index] = object;
     }
-    public boolean addAll(int index, MyArrayList<T> other){
-        if(other.count == 0) return false;
+    public boolean addAll(int index, MyArray<T> otherarray){
+        if(otherarray.count == 0) {
+            return false;
+        }
 
         int newSize = size;
-        while (newSize - count <= other.count) newSize *= 2;
+        while (newSize - count <= otherarray.count) {
+            newSize *= 2;
+        }
         resize(newSize);
-        System.arraycopy(l, index, l, index+other.count, count - index);
-        System.arraycopy(other.l, 0, l, index, other.count);
-        count += other.count;
+        System.arraycopy(array, index, array, index+otherarray.count, count - index);
+        System.arraycopy(otherarray.array, 0, array, index, otherarray.count);
+        count += otherarray.count;
 
         return true;
     }
 
-    public int indexOf(T o){
-        for(int i = 0; i < count; i++)
-            if(l[i].equals(o)) return i;
+    public int indexOf(T object) {
+        for(int i = 0; i < count; i++) {
+            if (array[i].equals(object)) {
+                return i;
+            }
+        }
         return -1;
     }
 
-    public int lastIndexOf(T o){
-        for(int i = count-1; i >=0; i--)
-            if(l[i].equals(o)) return i;
+    public int lastIndexOf(T object){
+        for(int i = count-1; i >=0; i--) {
+            if (array[i].equals(object)) {
+                return i;
+            }
+        }
         return -1;
     }
 
 
     public void sort(Comparator<? super T> comp){
-        //Arrays.sort(l, comp); // java.lang.NullPointerException
-        for (int i = 1; i < count; i++) {
+        Arrays.sort(array, comp); // java.lang.NullPointerException
+        /*for (int i = 1; i < count; i++) {
             boolean ch = false;
             for(int j = count-1; j > i; j--){
-                if(comp.compare(l[j], l[j-1]) < 0){
-                    T tmp = l[j];
-                    l[j] = l[j-1];
-                    l[j-1] = tmp;
+                if(comp.compare(array[j], array[j-1]) < 0){
+                    T tmp = array[j];
+                    array[j] = array[j-1];
+                    array[j-1] = tmp;
                     ch = true;
                 }
             }
             if(!ch) break;
-        }
+        }*/
     }
 
-    public MyArrayList<T> subList(int start, int end){
-        MyArrayList<T> nl = new MyArrayList<>();
-        for(int i = start; i<end; i++) nl.add(l[i]);
-        return nl;
-    }
-
-    public void set(int index, T o){
-        l[index] = o;
+    public void set(int index, T object){
+        array[index] = object;
     }
 
     public T remove(int index){
         if(index > count)
             throw new IndexOutOfBoundsException();
-        T o = l[index];
-        System.arraycopy(l, index+1, l, index, count-index-1);
-        l[--count] = null;
+        T object = array[index];
+        System.arraycopy(array, index+1, array, index, count-index-1);
+        array[--count] = null;
 
         if(count < size/2) resize(size/2);
-        return o;
+        return object;
     }
 
-
-    private void resize(int nSize){
-        if(nSize > size)
-            l = Arrays.copyOf(l, nSize);
+    private void resize(int newSize){
+        if(newSize > size)
+            array = Arrays.copyOf(array, newSize);
         else{
-            T[] tmp = (T[])new Object[nSize];
-            System.arraycopy(l, 0, tmp, 0, nSize);
-            l = tmp;
+            T[] temp = (T[])new Object[newSize];
+            System.arraycopy(array, 0, temp, 0, newSize);
+            array = temp;
         }
-        size = nSize;
+        size = newSize;
 
     }
 
     public T get(int index){
-        if(index > count)
+        if(index > count) {
             throw new IndexOutOfBoundsException();
-        return l[index];
+        }
+        return array[index];
     }
 
     public int getCount() {
@@ -126,10 +130,6 @@ public class MyArrayList <T>{
 
     @Override
     public String toString() {
-        return "MyArrayList{" +
-                "l=" + Arrays.toString(l) +
-                ", count=" + count +
-                ", size=" + size +
-                '}';
+        return "Массив: {" + Arrays.toString(array) + " }, количество элементов = " + count + ", размерность = " + size;
     }
 }
