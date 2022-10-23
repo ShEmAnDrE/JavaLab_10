@@ -71,19 +71,7 @@ public class MyArray<T>{
 
 
     public void sort(Comparator<? super T> comp){
-        Arrays.sort(array, comp); // java.lang.NullPointerException
-        /*for (int i = 1; i < count; i++) {
-            boolean ch = false;
-            for(int j = count-1; j > i; j--){
-                if(comp.compare(array[j], array[j-1]) < 0){
-                    T tmp = array[j];
-                    array[j] = array[j-1];
-                    array[j-1] = tmp;
-                    ch = true;
-                }
-            }
-            if(!ch) break;
-        }*/
+        Arrays.sort(array, comp);
     }
 
     public void set(int index, T object){

@@ -33,7 +33,7 @@ public class Main {
     }
 
     public static void main(String[] args) {
-        System.out.println("Лаба №10");
+        /*System.out.println("Лаба №10");
         System.out.println("Задание 1");
         System.out.println("---------------------------");
         Integer[] arrayInt = new Integer[] {1,2,3,4,5};
@@ -56,11 +56,11 @@ public class Main {
 
         System.out.println("Задание 4");
         System.out.println("---------------------------");
-        Path path = Paths.get("/Users/andreyshemchuk/Documents/прога на java"); // на маке исправить надо
+        Path path = Paths.get("/Users/andreyshemchuk/Documents/прога на java");
         ArrayList<String> listOfDirectories = ReadingDirectory(path);
         for (int i = 0; i < 5; i++) {
             System.out.println(listOfDirectories.get(i));
-        }
+        }*/
         System.out.println("---------------------------");
 
         System.out.println("Лаба №11");
